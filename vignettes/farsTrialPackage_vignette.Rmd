@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Vignette: Exploring Traffic Accidents Data with fars R Package
+# Vignette: Exploring Traffic Accidents Data Experimental Package
 
 ## Introduction
 
