@@ -3,14 +3,8 @@
 #' @param filename The name or path of the csv file.
 #' @return A tibble converted from the csv file.
 #' @details If \code{filename} does not exist error will be shown as \code{Error in fars_read("filename") : file 'filename' does not exist}
-#' @importFrom readr read_csv
-#' @importFrom dplyr tbl_df
+#' @importFrom dplyr as_tibble
 #' @examples
-#' \dontrun{
-#' # Read data from a CSV file and display the first few rows
-#' data <- fars_read("path/to/fars_data.csv")
-#' head(data)
-#' }
 #' @export
 fars_read <- function(filename) {
   tryCatch(
@@ -29,9 +23,6 @@ fars_read <- function(filename) {
 #' @param year A vector or single \code{integer} valued input, floating point values will be converted to \code{integer}.
 #' @return A string.
 #' @importFrom base as.integer sprintf
-#' @examples
-#' make_filename(2023)
-#' make_filename(c(2022,2023,2024))
 #' @export
 make_filename <- function(year) {
   year <- as.integer(year)
@@ -45,12 +36,6 @@ make_filename <- function(year) {
 #' @details If there are no files specific to any of the years \code{"invalid year: "} warning will be shown in the console and the corresponding list element will #' be NULL
 #' @importFrom dplyr mutate
 #' @importFrom magrittr %>%
-#' @examples
-#' \dontrun{
-#' fars_read_years(2013)
-#' fars_read_years(c(2013,2014,2015))
-#'
-#' }
 #' @export
 fars_read_years <- function(years) {
   lapply(years, function(year) {
@@ -72,12 +57,6 @@ fars_read_years <- function(years) {
 #' @return summarized table from the csv files.
 #' @importFrom dplyr group_by, summarize
 #' @importFrom tidyr spread
-#' @examples
-#' \dontrun{
-#' fars_summarize_years(2013)
-#' fars_summarize_years(c(2013,2014,2015))
-#'
-#' }
 #' @export
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
@@ -95,10 +74,6 @@ fars_summarize_years <- function(years) {
 #' @details If the input \code{state.num} is not present will show the error \code{"invalid STATE number: state.num"}, If no data is present in the file with respect to the input \code{state.num} and \code{year} it will print the message \code{"no accidents to plot"}.
 #' @importFrom maps map
 #' @importFrom graphics points
-#' @examples
-#' \dontrun{
-#' fars_map_state(state.num = 1, year = 2015)
-#' }
 #' @export
 fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)

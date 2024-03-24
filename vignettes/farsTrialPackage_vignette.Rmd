@@ -18,6 +18,9 @@ The 'fars' package in R provides functions to explore and analyze data from the 
 The `fars_read` function reads FARS data from a CSV file. It ensures the file exists and loads the data into a tibble, providing a streamlined interface for data access.
 
 ```{r}
+#Load the library
+library(farsTrialPackage)
+
 # Example usage of fars_read function
 data <- fars_read("accident_2013.csv")
 ```
